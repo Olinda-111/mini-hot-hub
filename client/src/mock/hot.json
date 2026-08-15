@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "cached": false,
+  "data": [
+    {
+      "source": "weibo",
+      "sourceName": "微博热搜",
+      "listName": "热搜榜",
+      "updatedAt": "2026-07-31T12:00:00Z",
+      "items": [
+        { "rank": 1, "title": "某地发生6.5级地震 救援力量已抵达现场", "heat": "15234210", "url": "https://s.weibo.com/weibo?q=%E5%9C%B0%E9%9C%87" },
+        { "rank": 2, "title": "某明星发布新专辑 首日销量破百万", "heat": "12034567", "url": "https://s.weibo.com/weibo?q=%E6%96%B0%E4%B8%93%E8%BE%91" },
+        { "rank": 3, "title": "某科技公司发布全新AI芯片 性能提升300%", "heat": "9876543", "url": "https://s.weibo.com/weibo?q=AI%E8%8A%AF%E7%89%87" },
+        { "rank": 4, "title": "某地高温突破42度 多地发布红色预警", "heat": "8765432", "url": "https://s.weibo.com/weibo?q=%E9%AB%98%E6%B8%A9" },
+        { "rank": 5, "title": "某国产电影票房破50亿 创影史新纪录", "heat": "7654321", "url": "https://s.weibo.com/weibo?q=%E7%A5%A8%E6%88%BF" },
+        { "rank": 6, "title": "某知名运动员宣布退役 感谢粉丝多年支持", "heat": "6543210", "url": "https://s.weibo.com/weibo?q=%E9%80%80%E5%BD%B9" },
+        { "rank": 7, "title": "某地发现大型锂矿 储量居亚洲前列", "heat": "5432109", "url": "https://s.weibo.com/weibo?q=%E9%94%82%E7%9F%BF" },
+        { "rank": 8, "title": "某综艺节目争议片段引发全网讨论", "heat": "4321098", "url": "https://s.weibo.com/weibo?q=%E7%BB%BC%E8%89%BA" },
+        { "rank": 9, "title": "央行宣布降准0.5个百分点 释放长期资金", "heat": "3210987", "url": "https://s.weibo.com/weibo?q=%E9%99%8D%E5%87%86" },
+        { "rank": 10, "title": "某地文旅局局长穿汉服出镜 带火当地旅游", "heat": "2109876", "url": "https://s.weibo.com/weibo?q=%E6%96%87%E6%97%85" }
+      ]
+    },
+    {
+      "source": "zhihu",
+      "sourceName": "知乎热榜",
+      "listName": "热榜",
+      "updatedAt": "2026-07-31T12:00:01Z",
+      "items": [
+        { "rank": 1, "title": "如何看待某地发生6.5级地震后的救援响应速度？", "heat": "3800 万热度", "url": "https://www.zhihu.com/question/661234567" },
+        { "rank": 2, "title": "某AI芯片性能提升300%，对行业意味着什么？", "heat": "3200 万热度", "url": "https://www.zhihu.com/question/661234568" },
+        { "rank": 3, "title": "有哪些被严重低估的国产电影值得推荐？", "heat": "2800 万热度", "url": "https://www.zhihu.com/question/661234569" },
+        { "rank": 4, "title": "为什么2026年极端高温天气越来越频繁？", "heat": "2500 万热度", "url": "https://www.zhihu.com/question/661234570" },
+        { "rank": 5, "title": "央行降准对普通人有什么实际影响？", "heat": "2200 万热度", "url": "https://www.zhihu.com/question/661234571" },
+        { "rank": 6, "title": "某运动员的职业生涯成就能否排进历史前十？", "heat": "1900 万热度", "url": "https://www.zhihu.com/question/661234572" },
+        { "rank": 7, "title": "锂矿储量增加对新能源汽车行业有何影响？", "heat": "1600 万热度", "url": "https://www.zhihu.com/question/661234573" },
+        { "rank": 8, "title": "综艺节目的争议内容是否反映了社会价值观的变化？", "heat": "1400 万热度", "url": "https://www.zhihu.com/question/661234574" },
+        { "rank": 9, "title": "自学编程应该从哪门语言开始？2026年最新建议", "heat": "1200 万热度", "url": "https://www.zhihu.com/question/661234575" },
+        { "rank": 10, "title": "文旅宣传的「网红化」是好事还是坏事？", "heat": "1000 万热度", "url": "https://www.zhihu.com/question/661234576" }
+      ]
+    },
+    {
+      "source": "bilibili",
+      "sourceName": "B站热搜",
+      "listName": "热搜榜",
+      "updatedAt": "2026-07-31T12:00:02Z",
+      "items": [
+        { "rank": 1, "title": "【4K】地震瞬间监控实拍合集 画面震撼", "heat": "15234210", "url": "https://search.bilibili.com/all?keyword=%E5%9C%B0%E9%9C%87%E7%9E%AC%E9%97%B4" },
+        { "rank": 2, "title": "新专辑全曲试听 UP主深度解析编曲细节", "heat": "12034567", "url": "https://search.bilibili.com/all?keyword=%E6%96%B0%E4%B8%93%E8%BE%91%E8%A7%A3%E6%9E%90" },
+        { "rank": 3, "title": "AI芯片评测：跑分实测对比上代提升到底多少", "heat": "9876543", "url": "https://search.bilibili.com/all?keyword=AI%E8%8A%AF%E7%89%87%E8%B7%91%E5%88%86" },
+        { "rank": 4, "title": "【科普】为什么今年夏天这么热？气象局数据解读", "heat": "8765432", "url": "https://search.bilibili.com/all?keyword=%E9%AB%98%E6%B8%A9%E7%A7%91%E6%99%AE" },
+        { "rank": 5, "title": "50亿票房电影拉片：镜头语言与叙事结构分析", "heat": "7654321", "url": "https://search.bilibili.com/all?keyword=%E7%A5%A8%E6%88%BF%E6%8B%89%E7%89%87" },
+        { "rank": 6, "title": "传奇落幕！职业生涯高光时刻30分钟回顾", "heat": "6543210", "url": "https://search.bilibili.com/all?keyword=%E9%80%80%E5%BD%B9%E9%AB%98%E5%85%89" },
+        { "rank": 7, "title": "锂矿实地探访：中国最大锂矿到底有多大？", "heat": "5432109", "url": "https://search.bilibili.com/all?keyword=%E9%94%82%E7%9F%BF%E6%8E%A2%E8%AE%BF" },
+        { "rank": 8, "title": "综艺争议片段完整版 来龙去脉全梳理", "heat": "4321098", "url": "https://search.bilibili.com/all?keyword=%E7%BB%BC%E8%89%BA%E4%BA%89%E8%AE%AE" },
+        { "rank": 9, "title": "【硬核】降准是什么？3分钟看懂货币政策", "heat": "3210987", "url": "https://search.bilibili.com/all?keyword=%E9%99%8D%E5%87%86%E8%A7%A3%E8%AF%BB" },
+        { "rank": 10, "title": "汉服文旅局长出圈 当地旅游攻略来啦", "heat": "2109876", "url": "https://search.bilibili.com/all?keyword=%E6%96%87%E6%97%85%E5%B1%80%E9%95%BF" }
+      ]
+    }
+  ]
+}

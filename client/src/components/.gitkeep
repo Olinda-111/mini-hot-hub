@@ -1,0 +1,4 @@
+# 组件目录 — 按职责拆分的 React 组件
+
+# 命名格式：kebab-case 或 PascalCase
+# 例如：hot-card.tsx、hot-list.tsx、platform-selector.tsx、layout.tsx

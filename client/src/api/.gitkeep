@@ -1,0 +1,4 @@
+# API 层 — 封装对后端 /api/* 的 fetch 请求
+
+# 所有请求经 Vite proxy 代理至 Express 后端
+# 前端严禁直接 fetch 微博/知乎/B站原始域名

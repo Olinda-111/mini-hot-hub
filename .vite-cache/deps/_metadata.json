@@ -1,0 +1,46 @@
+{
+  "hash": "d4fb94f3",
+  "configHash": "06b7c7c1",
+  "lockfileHash": "ae10b111",
+  "browserHash": "d55c01c3",
+  "optimized": {
+    "react": {
+      "src": "../../mini-hot-hub/client/node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "d1e95f9b",
+      "needsInterop": true
+    },
+    "react-dom": {
+      "src": "../../mini-hot-hub/client/node_modules/react-dom/index.js",
+      "file": "react-dom.js",
+      "fileHash": "d84df9cb",
+      "needsInterop": true
+    },
+    "react/jsx-dev-runtime": {
+      "src": "../../mini-hot-hub/client/node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "044f421f",
+      "needsInterop": true
+    },
+    "react/jsx-runtime": {
+      "src": "../../mini-hot-hub/client/node_modules/react/jsx-runtime.js",
+      "file": "react_jsx-runtime.js",
+      "fileHash": "564d3b35",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../mini-hot-hub/client/node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "1ba97135",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-EQA2DRZY": {
+      "file": "chunk-EQA2DRZY.js"
+    },
+    "chunk-ZTLFG4G2": {
+      "file": "chunk-ZTLFG4G2.js"
+    }
+  }
+}
