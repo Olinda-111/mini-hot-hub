@@ -4,7 +4,7 @@ import type { HotPlatform } from "./types/hot";
 const RAILWAY_BASE = import.meta.env.VITE_API_BASE || '';
 
 // 博主的 Vercel 后端地址（知乎专用，记得换成他实际的域名）
-const ZHIHU_API_BASE = 'https://博主项目名.vercel.app'; // ⚠️ 替换成博主的真实地址
+const ZHIHU_API_BASE = 'https://dailyhotapi-production-5c5e.up.railway.app'; // ⚠️ 替换成博主的真实地址
 
 /** 请求单个平台热搜 */
 export async function fetchHotPlatform(source: string): Promise<HotPlatform> {
