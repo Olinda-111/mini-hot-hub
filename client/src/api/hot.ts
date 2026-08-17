@@ -12,7 +12,7 @@ export async function fetchHotPlatform(source: string): Promise<HotPlatform> {
   
   // 判断：如果是知乎，用博主的地址；否则用你的 Railway 地址
   if (source === 'zhihu') {
-    url = `${ZHIHU_API_BASE}/api/hot/${source}`; 
+    url = `${ZHIHU_API_BASE}/zhihu`;
     // 注意：如果博主的接口路径不一样（比如是 /zhihu 而不是 /api/hot/zhihu），这里的路径要改成和他一致的
   } else {
     url = `${RAILWAY_BASE}/api/hot/${source}`;
