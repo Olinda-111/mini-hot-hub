@@ -85,7 +85,8 @@ async function fetchWeibo() {
 
   const items = dedupeByTitle(
     list.slice(0, 10).map((item, i) => ({
-      rank: typeof item.rank === "number" ? item.rank : i + 1,
+      // 微博 API 的 rank 从 0 开始且可能重复，统一用数组索引强制 1 起连续
+      rank: i + 1,
       title: String(item.word ?? item.note ?? "").trim(),
       heat: heatValue(item, i + 1),
       // API 自带 trend 优先，否则由缓存计算

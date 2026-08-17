@@ -1,52 +1,82 @@
-import type { HotPlatform } from "./types/hot";
+import type { HotPlatform, HotItem } from "../types/hot";
 
-// 你的 Railway 后端地址（微博、B站用这个）
-const RAILWAY_BASE = import.meta.env.VITE_API_BASE || '';
+/**
+ * 双后端架构：
+ * - 微博、B站 → mini-hot-hub 后端（当前项目，/api/hot/:source）
+ * - 知乎 → 独立 DailyHotApi 后端（/zhihu）
+ *
+ * 两个地址均可用环境变量覆盖，默认值为 Railway 生产地址。
+ */
+const MAIN_API_BASE =
+  import.meta.env.VITE_API_BASE ||
+  "https://mini-hot-hub-production-e09f.up.railway.app";
 
-// 博主的 Vercel 后端地址（知乎专用，记得换成他实际的域名）
-const ZHIHU_API_BASE = 'https://dailyhotapi-production-5c5e.up.railway.app'; // ⚠️ 替换成博主的真实地址
+const ZHIHU_API_BASE =
+  import.meta.env.VITE_ZHIHU_API_BASE ||
+  "https://dailyhotapi-production-5c5e.up.railway.app";
+
+/** DailyHotApi 返回的单条数据（字段名与 imsyy/DailyHotApi 对齐） */
+interface DailyHotItem {
+  title?: unknown;
+  hot?: unknown;
+  url?: unknown;
+  mobileUrl?: unknown;
+}
 
 /** 请求单个平台热搜 */
 export async function fetchHotPlatform(source: string): Promise<HotPlatform> {
-  let url: string;
-  
-  if (source === 'zhihu') {
-    // 使用 DailyHotApi
-    url = `${ZHIHU_API_BASE}/zhihu`;
-  } else {
-    // 微博、B站走你的 Railway 后端
-    url = `${RAILWAY_BASE}/api/hot/${source}`;
+  if (source === "zhihu") {
+    return fetchZhihu();
   }
 
-  const res = await fetch(url);
+  // 微博、B站走 mini-hot-hub 后端
+  const res = await fetch(`${MAIN_API_BASE}/api/hot/${source}`);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const json = await res.json();
-
-  // ★★★ 知乎使用 DailyHotApi 的数据格式 ★★★
-  if (source === 'zhihu') {
-    // DailyHotApi 返回：{ code: "200", data: [...], total: 30, ... }
-    if (json.code !== 200) {
-      throw new Error(json.message || "知乎数据获取失败");
-    }
-    // 直接取 data 数组作为列表
-    return {
-      source: 'zhihu',
-      list: json.data || [],
-      updatedAt: Date.now()
-    } as HotPlatform;
-  }
-
-  // ★★★ 微博、B站使用原来的格式 ★★★
   if (!json.ok) throw new Error(json.message || "请求失败");
   return json.data as HotPlatform;
 }
 
-/** 请求全平台热搜（如果你用这个函数，也需要做类似判断，但一般博主只提供单平台接口） */
+/**
+ * 请求全平台热搜（仅微博、B站聚合，知乎需走独立后端）。
+ * 如需三个平台一起拿，改用 fetchHotPlatform 分别调用。
+ */
 export async function fetchAllHot(): Promise<HotPlatform[]> {
-  // 如果你之前用这个接口一次性拿所有数据，建议改为分别调用 fetchHotPlatform('weibo')、fetchHotPlatform('bilibili')、fetchHotPlatform('zhihu')
-  // 这样更灵活，也方便处理不同后端
-  const res = await fetch(`${RAILWAY_BASE}/api/hot`);
+  const res = await fetch(`${MAIN_API_BASE}/api/hot`);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const json = await res.json();
   return json.platforms as HotPlatform[];
+}
+
+/**
+ * 知乎走 DailyHotApi，需把 { code, data: [{ title, hot, url }] } 转成标准 HotPlatform。
+ */
+async function fetchZhihu(): Promise<HotPlatform> {
+  // 加 limit=10 从源头只请求前十条，避免下载 30 条完整数据（desc 字段极长）
+  const res = await fetch(`${ZHIHU_API_BASE}/zhihu?limit=10`);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const json = await res.json();
+
+  const list = json?.data;
+  if (!Array.isArray(list)) {
+    throw new Error("知乎数据格式异常");
+  }
+
+  const items: HotItem[] = (list as DailyHotItem[])
+    .slice(0, 10)
+    .map((item, i) => ({
+      rank: i + 1,
+      title: String(item.title ?? "").trim(),
+      heat: item.hot != null ? String(item.hot) : "",
+      url: String(item.url ?? item.mobileUrl ?? ""),
+    }));
+
+  return {
+    source: "zhihu",
+    sourceName: "知乎热榜",
+    listName: "热榜",
+    // 用后端返回的 updateTime，保证「更新于」反映真实抓取时间
+    updatedAt: (json.updateTime as string) ?? new Date().toISOString(),
+    items,
+  };
 }

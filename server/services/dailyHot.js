@@ -1,12 +1,15 @@
 /**
- * 本地 DailyHotApi 统一客户端
+ * DailyHotApi 统一客户端
  *
- * 数据源：http://localhost:6688/{source}（source = weibo | zhihu | bilibili）
+ * 数据源：{DAILY_HOT_BASE}/{source}（source = weibo | zhihu | bilibili）
+ * 默认指向部署的 DailyHotApi 公网地址，本地开发可用环境变量覆盖为 localhost:6688。
  * 成功返回 items 数组：[{ rank, title, heat, url, trend }]
  * 失败返回 { error: true, message }
  */
 
-const DAILY_HOT_BASE = process.env.DAILY_HOT_BASE || "http://localhost:6688";
+const DAILY_HOT_BASE =
+  process.env.DAILY_HOT_BASE ||
+  "https://dailyhotapi-production-5c5e.up.railway.app";
 const TIMEOUT_MS = 8000;
 
 /** 上一次排名缓存：source -> Map<title -> rank> */
@@ -30,7 +33,8 @@ async function fetchHot(source) {
     return { error: true, message: `${mockEnv} 模拟故障` };
   }
 
-  const url = `${DAILY_HOT_BASE}/${source}`;
+  // 加 limit=10 从源头只请求前十条，避免下载 30 条完整数据
+  const url = `${DAILY_HOT_BASE}/${source}?limit=10`;
   try {
     const json = await httpRequest(url);
     const list = json?.data;
