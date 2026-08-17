@@ -25,7 +25,7 @@ export async function fetchHotPlatform(source: string): Promise<HotPlatform> {
   // ★★★ 知乎使用 DailyHotApi 的数据格式 ★★★
   if (source === 'zhihu') {
     // DailyHotApi 返回：{ code: "200", data: [...], total: 30, ... }
-    if (json.code !== "200") {
+    if (json.code !== 200) {
       throw new Error(json.message || "知乎数据获取失败");
     }
     // 直接取 data 数组作为列表
