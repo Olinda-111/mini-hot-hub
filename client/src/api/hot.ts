@@ -10,20 +10,33 @@ const ZHIHU_API_BASE = 'https://dailyhotapi-production-5c5e.up.railway.app'; // 
 export async function fetchHotPlatform(source: string): Promise<HotPlatform> {
   let url: string;
   
-  // 判断：如果是知乎，用博主的地址；否则用你的 Railway 地址
   if (source === 'zhihu') {
+    // 使用 DailyHotApi
     url = `${ZHIHU_API_BASE}/zhihu`;
-    // 注意：如果博主的接口路径不一样（比如是 /zhihu 而不是 /api/hot/zhihu），这里的路径要改成和他一致的
   } else {
+    // 微博、B站走你的 Railway 后端
     url = `${RAILWAY_BASE}/api/hot/${source}`;
   }
 
   const res = await fetch(url);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const json = await res.json();
-  
-  // 这里假设博主返回的数据格式和你的一致（包含 ok 和 data 字段）
-  // 如果他的格式不一样（比如直接返回数组），你需要在这里做数据转换
+
+  // ★★★ 知乎使用 DailyHotApi 的数据格式 ★★★
+  if (source === 'zhihu') {
+    // DailyHotApi 返回：{ code: "200", data: [...], total: 30, ... }
+    if (json.code !== "200") {
+      throw new Error(json.message || "知乎数据获取失败");
+    }
+    // 直接取 data 数组作为列表
+    return {
+      source: 'zhihu',
+      list: json.data || [],
+      updatedAt: Date.now()
+    } as HotPlatform;
+  }
+
+  // ★★★ 微博、B站使用原来的格式 ★★★
   if (!json.ok) throw new Error(json.message || "请求失败");
   return json.data as HotPlatform;
 }
